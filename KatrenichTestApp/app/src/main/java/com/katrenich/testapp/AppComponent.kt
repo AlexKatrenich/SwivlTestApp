@@ -1,6 +1,7 @@
 package com.katrenich.testapp
 
 import android.content.Context
+import com.katrenich.testapp.data.di.NetworkModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
@@ -9,7 +10,8 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [
     AndroidSupportInjectionModule::class,
-    AppModule::class
+    AppModule::class,
+    NetworkModule::class
 ])
 interface AppComponent {
 
