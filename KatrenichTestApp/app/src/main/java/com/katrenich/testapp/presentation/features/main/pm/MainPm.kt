@@ -1,4 +1,4 @@
-package com.katrenich.testapp.presentation.core.pm
+package com.katrenich.testapp.presentation.features.main.pm
 
 import com.katrenich.testapp.presentation.Screen
 import com.katrenich.testapp.presentation.Screens

@@ -1,11 +1,11 @@
-package com.katrenich.testapp.presentation.core.ui
+package com.katrenich.testapp.presentation.features.main.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.katrenich.testapp.R
 import com.katrenich.testapp.presentation.Screen
 import com.katrenich.testapp.presentation.core.factory.PmFactory
-import com.katrenich.testapp.presentation.core.pm.MainPm
+import com.katrenich.testapp.presentation.features.main.pm.MainPm
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
