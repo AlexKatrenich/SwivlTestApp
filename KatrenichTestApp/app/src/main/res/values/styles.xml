@@ -9,4 +9,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="CaptionPrimary" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/text_color_grey</item>
+    </style>
+
 </resources>
