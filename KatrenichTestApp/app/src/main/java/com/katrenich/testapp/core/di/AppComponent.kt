@@ -1,6 +1,7 @@
 package com.katrenich.testapp.core.di
 
 import android.app.Application
+import android.content.Context
 import com.katrenich.testapp.App
 import com.katrenich.testapp.presentation.di.ActivityBuilder
 import com.katrenich.testapp.presentation.di.FragmentBuilder
@@ -24,10 +25,14 @@ interface AppComponent {
     interface Builder {
 
         @BindsInstance
-        fun application(app: Application): Builder
+        fun context(context: Context): Builder
+
+        fun appModule(module: AppModule): Builder
 
         fun build(): AppComponent
     }
 
     fun inject(app: App)
+
+    fun context(): Context
 }

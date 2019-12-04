@@ -2,6 +2,7 @@ package com.katrenich.testapp
 
 import android.app.Activity
 import android.app.Application
+import com.katrenich.testapp.core.di.AppModule
 import com.katrenich.testapp.core.di.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -23,7 +24,8 @@ class App : Application(), HasActivityInjector {
 
     private fun initializeDagger() {
         DaggerAppComponent.builder()
-            .application(this)
+            .context(this)
+            .appModule(AppModule())
             .build()
             .inject(this)
     }
