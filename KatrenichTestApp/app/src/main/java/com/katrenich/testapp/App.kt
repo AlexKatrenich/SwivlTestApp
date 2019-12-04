@@ -2,33 +2,28 @@ package com.katrenich.testapp
 
 import android.app.Activity
 import android.app.Application
-import android.content.Context
-import androidx.multidex.MultiDex
+import com.katrenich.testapp.core.di.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
+import javax.inject.Inject
 
 class App : Application(), HasActivityInjector {
 
-    lateinit var dispatchingActivityInjector: DispatchingAndroidInjector<Activity>
+    @Inject
+    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
 
-    override fun activityInjector(): AndroidInjector<Activity> = dispatchingActivityInjector
+    override fun activityInjector(): AndroidInjector<Activity>? =
+        dispatchingAndroidInjector
 
     override fun onCreate() {
         super.onCreate()
-        initializeInjector()
+        initializeDagger()
     }
 
-    override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(base)
-        MultiDex.install(base)
-    }
-
-    private fun initializeInjector() {
-        DaggerAppComponent
-            .builder()
-            .context(this)
-            .appModule(AppModule())
+    private fun initializeDagger() {
+        DaggerAppComponent.builder()
+            .application(this)
             .build()
             .inject(this)
     }

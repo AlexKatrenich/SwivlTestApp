@@ -1,9 +1,8 @@
 package com.katrenich.testapp.presentation.core.pm
 
 import me.dmdev.rxpm.PresentationModel
+import javax.inject.Inject
 
-abstract class BasePm(
-) : PresentationModel() {
-
+class MainPm @Inject constructor() : PresentationModel() {
 
 }
