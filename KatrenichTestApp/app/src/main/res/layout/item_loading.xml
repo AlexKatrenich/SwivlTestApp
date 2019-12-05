@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp">
+
+    <ProgressBar
+            android:id="@+id/progressView"
+            android:layout_width="@dimen/user_circle_image_dimen"
+            android:layout_height="@dimen/user_circle_image_dimen"
+            android:indeterminate="true"
+            android:layout_margin="12dp"
+            android:layout_gravity="center"/>
+
+</LinearLayout>

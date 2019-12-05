@@ -1,40 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        android:layout_margin="6dp"
+        android:elevation="12dp"
+        app:cardCornerRadius="12dp">
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="6dp"
-            android:elevation="12dp"
-            app:cardCornerRadius="12dp">
+            android:orientation="horizontal">
 
-        <LinearLayout
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/avatarView"
+                android:layout_width="@dimen/user_circle_image_dimen"
+                android:layout_height="@dimen/user_circle_image_dimen"
+                android:layout_margin="16dp"
+                android:background="@drawable/bg_circle_image_view"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_no_image" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/titleView"
+                style="@style/CaptionPrimary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="16dp"
+                tools:text="Lacara Jones" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/avatarView"
-                    android:layout_width="@dimen/user_circle_image_dimen"
-                    android:layout_height="@dimen/user_circle_image_dimen"
-                    android:layout_margin="16dp"
-                    android:background="@drawable/bg_circle_image_view"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_no_image" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/titleView"
-                    style="@style/CaptionPrimary"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="16dp"
-                    tools:text="Lacara Jones" />
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-</FrameLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
