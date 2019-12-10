@@ -3,6 +3,7 @@ package com.katrenich.testapp.core.di
 import android.app.Application
 import android.content.Context
 import com.katrenich.testapp.App
+import com.katrenich.testapp.data.di.ApiModule
 import com.katrenich.testapp.presentation.di.ActivityBuilder
 import com.katrenich.testapp.presentation.di.FragmentBuilder
 import com.katrenich.testapp.presentation.di.PmModule
@@ -17,6 +18,7 @@ import javax.inject.Singleton
     AppModule::class,
     ActivityBuilder::class,
     FragmentBuilder::class,
+    ApiModule::class,
     AndroidSupportInjectionModule::class
 ])
 interface AppComponent {

@@ -65,12 +65,12 @@ class ResourceProvider(private val context: Context) {
 	}
 
 	/**
-	 * Returns an [Int] identifier of [Drawable] res by it [String] name
+	 * Returns an [Int] identifier of [Drawable] res by it [String] login
 	 * Example:
 	 * ```
 	 * val resId = resourceProvider.getDrawableId("ic_launcher")
 	 * ```
-	 * @param name [String] name identifier of drawable res.
+	 * @param name [String] login identifier of drawable res.
 	 * @return [Int] identifier of [Drawable] or **0** if something went wrong
 	 */
 	fun getDrawableId(name: String?): Int {
