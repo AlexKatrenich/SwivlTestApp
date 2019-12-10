@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">KatrenichTestApp</string>
+    <string name="users_list_screen_toolbar_title">Users</string>
 </resources>

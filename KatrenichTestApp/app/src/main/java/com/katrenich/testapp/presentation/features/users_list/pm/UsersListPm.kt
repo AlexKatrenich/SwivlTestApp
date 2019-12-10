@@ -3,6 +3,7 @@ package com.katrenich.testapp.presentation.features.users_list.pm
 import androidx.lifecycle.LiveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
+import com.katrenich.testapp.R
 import com.katrenich.testapp.core.resources.ResourceProvider
 import com.katrenich.testapp.data.LoadState
 import com.katrenich.testapp.data.datasource.UsersDataSourceFactory
@@ -11,6 +12,7 @@ import com.katrenich.testapp.presentation.features.users_list.ui.adapter.items.U
 import javax.inject.Inject
 
 class UsersListPm @Inject constructor(
+	private val resources: ResourceProvider,
 	private val sourceFactory: UsersDataSourceFactory
 ) : BasePm() {
 
@@ -27,6 +29,12 @@ class UsersListPm @Inject constructor(
 			.setInitialLoadSizeHint(40)
 			.build()
 		usersList = LivePagedListBuilder(sourceFactory, config).build()
+
+		lifecycleObservable
+			.filter { it == Lifecycle.CREATED }
+			.map { resources.getString(R.string.users_list_screen_toolbar_title) }
+			.subscribe(toolbarTitleState.consumer)
+			.untilDestroy()
 	}
 
 	fun getUsers(): LiveData<PagedList<UserListItem>> = usersList
