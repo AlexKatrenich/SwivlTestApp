@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.katrenich.testapp.R
-import com.katrenich.testapp.common.rxbus.RxBus
+import com.katrenich.testapp.core.rxbus.RxBus
 import com.katrenich.testapp.presentation.core.rxbus.Clicks
 import com.katrenich.testapp.presentation.features.users_list.ui.adapter.items.UserListItem
 import kotlinx.android.synthetic.main.item_user.view.*

@@ -1,4 +1,4 @@
-package com.katrenich.testapp.common.schedulers
+package com.katrenich.testapp.core.schedulers
 
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers

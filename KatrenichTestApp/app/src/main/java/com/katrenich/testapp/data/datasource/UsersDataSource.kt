@@ -29,9 +29,6 @@ class UsersDataSource(
 
 	private var retryCompletable: Completable? = null
 
-	private lateinit var params: LoadParams<Long>
-	private lateinit var callback: LoadCallback<UserListItem>
-
 	private val compositeDisposable = CompositeDisposable()
 
 	override fun loadInitial(
@@ -55,8 +52,6 @@ class UsersDataSource(
 	}
 
 	override fun loadAfter(params: LoadParams<Long>, callback: LoadCallback<UserListItem>) {
-		this.params = params
-		this.callback = callback
 		paginatedNetworkStateLiveData.postValue(Loading)
 		compositeDisposable.add(
 			api.getUsers(params.key, params.requestedLoadSize)

@@ -1,6 +1,6 @@
 package com.katrenich.testapp.presentation.features.main.pm
 
-import com.katrenich.testapp.common.rxbus.RxBus
+import com.katrenich.testapp.core.rxbus.RxBus
 import com.katrenich.testapp.presentation.Screen
 import com.katrenich.testapp.presentation.Screens
 import com.katrenich.testapp.presentation.core.rxbus.Clicks

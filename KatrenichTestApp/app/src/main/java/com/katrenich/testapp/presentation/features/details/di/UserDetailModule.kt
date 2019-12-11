@@ -1,7 +1,7 @@
 package com.katrenich.testapp.presentation.features.details.di
 
 import com.katrenich.testapp.common.mapper.Mapper
-import com.katrenich.testapp.common.schedulers.SchedulersFacade
+import com.katrenich.testapp.core.schedulers.SchedulersFacade
 import com.katrenich.testapp.data.api.GitHubApi
 import com.katrenich.testapp.data.datasource.UserDataSource
 import com.katrenich.testapp.data.model.UserDto

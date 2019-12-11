@@ -1,6 +1,6 @@
 package com.katrenich.testapp.data.datasource
 
-import com.katrenich.testapp.common.schedulers.SchedulersFacade
+import com.katrenich.testapp.core.schedulers.SchedulersFacade
 import com.katrenich.testapp.data.api.GitHubApi
 import com.katrenich.testapp.data.model.UserDto
 import io.reactivex.Single

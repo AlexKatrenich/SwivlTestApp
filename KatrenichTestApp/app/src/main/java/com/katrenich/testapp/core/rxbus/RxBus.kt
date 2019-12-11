@@ -1,6 +1,6 @@
 @file:Suppress("UNCHECKED_CAST")
 
-package com.katrenich.testapp.common.rxbus
+package com.katrenich.testapp.core.rxbus
 
 import com.jakewharton.rxrelay2.PublishRelay
 import io.reactivex.Observable

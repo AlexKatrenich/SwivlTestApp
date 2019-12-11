@@ -2,7 +2,7 @@ package com.katrenich.testapp.presentation.features.details.pm
 
 import com.katrenich.testapp.R
 import com.katrenich.testapp.common.mapper.Mapper
-import com.katrenich.testapp.common.rxbus.RxBus
+import com.katrenich.testapp.core.rxbus.RxBus
 import com.katrenich.testapp.core.resources.ResourceProvider
 import com.katrenich.testapp.data.datasource.UserDataSource
 import com.katrenich.testapp.data.model.UserDto
@@ -23,7 +23,7 @@ class UserDetailPm @Inject constructor(
 
 	private var userId = 0L
 
-	private val loadUserByIdCommand = Command<Long>()
+	private val loadUserByIdAction = Action<Unit>()
 
 	override fun onCreate() {
 		super.onCreate()
@@ -39,8 +39,8 @@ class UserDetailPm @Inject constructor(
 			.subscribe()
 			.untilDestroy()
 
-		loadUserByIdCommand.observable
-			.map { UserDataSource.Params(it) }
+		loadUserByIdAction.observable.mergeWith(retryAction.observable)
+			.map { UserDataSource.Params(userId) }
 			.flatMapSingle {
 				dataSource.loadInitial(it)
 					.bindProgress()
@@ -50,8 +50,9 @@ class UserDetailPm @Inject constructor(
 			.untilDestroy()
 
 		retryAction.observable
-			.map { userId }
-			.subscribe { loadUserByIdCommand.consumer.accept(it) }
+			.map { Unit }
+			.doOnNext(loadUserByIdAction.consumer)
+			.subscribe()
 			.untilDestroy()
 	}
 
@@ -61,6 +62,6 @@ class UserDetailPm @Inject constructor(
 
 	fun setUserId(userId: Long) {
 		this.userId = userId
-		loadUserByIdCommand.consumer.accept(userId)
+		loadUserByIdAction.consumer.accept(Unit)
 	}
 }

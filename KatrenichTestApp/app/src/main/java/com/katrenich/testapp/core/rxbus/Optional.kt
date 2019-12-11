@@ -1,4 +1,4 @@
-package com.katrenich.testapp.common.rxbus
+package com.katrenich.testapp.core.rxbus
 
 /**
  * Copy from <a href="https://github.com/adiliqbl/RxBus" >
