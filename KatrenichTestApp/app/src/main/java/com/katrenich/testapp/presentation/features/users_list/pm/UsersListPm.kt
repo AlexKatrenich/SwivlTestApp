@@ -34,12 +34,6 @@ class UsersListPm @Inject constructor(
 			.build()
 		usersList = LivePagedListBuilder(sourceFactory, config).build()
 
-		lifecycleObservable
-			.filter { it == Lifecycle.CREATED }
-			.map { resources.getString(R.string.users_list_screen_toolbar_title) }
-			.subscribe(toolbarTitleState.consumer)
-			.untilDestroy()
-
 		retryAction.observable
 			.doOnNext { throwableState.consumer.accept(false) }
 			.doOnNext { sourceFactory.dataSource.retry() }

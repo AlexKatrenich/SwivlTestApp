@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">KatrenichTestApp</string>
-    <string name="users_list_screen_toolbar_title">Users</string>
-    <string name="throwable_check_internet_connection">Something was wrong, check internet connection</string>
+	<string name="throwable_check_internet_connection">Something was wrong, check internet connection</string>
 	<string name="retry_button_title">Retry</string>
+
+    <!--Users list screen-->
+    <string name="users_list_screen_toolbar_title">Users</string>
+
+	<!--Detail screen-->
+	<string name="detail_screen_repos_title">Repos:</string>
+	<string name="detail_screen_gists_title">Gists:</string>
+	<string name="detail_screen_followers_title">Followers:</string>
 </resources>

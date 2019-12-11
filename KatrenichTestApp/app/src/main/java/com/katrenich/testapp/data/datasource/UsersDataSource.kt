@@ -2,7 +2,7 @@ package com.katrenich.testapp.data.datasource
 
 import androidx.paging.ItemKeyedDataSource
 import com.katrenich.testapp.data.api.GitHubApi
-import com.katrenich.testapp.data.model.UserDto
+import com.katrenich.testapp.data.model.UserListDto
 import io.reactivex.disposables.CompositeDisposable
 import androidx.lifecycle.MutableLiveData
 import com.jakewharton.rxrelay2.PublishRelay
@@ -19,7 +19,7 @@ import io.reactivex.schedulers.Schedulers
 
 class UsersDataSource(
 	private val api: GitHubApi,
-	private val usersMapper: Mapper<UserDto, UserListItem>
+	private val usersMapper: Mapper<UserListDto, UserListItem>
 ) : ItemKeyedDataSource<Long, UserListItem>() {
 
 	val throwableHandler = PublishRelay.create<LoadingException>()
