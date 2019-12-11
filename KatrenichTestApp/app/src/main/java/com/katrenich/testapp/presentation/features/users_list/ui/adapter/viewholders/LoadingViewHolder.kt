@@ -6,10 +6,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.katrenich.testapp.R
 import com.katrenich.testapp.presentation.features.users_list.ui.adapter.items.LoadingListItem
+import kotlinx.android.synthetic.main.item_loading.view.*
 
 class LoadingViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-	fun bindTo(loading: LoadingListItem) {}
+	fun bindTo(loading: LoadingListItem) {
+		itemView.progressView.isIndeterminate = true
+	}
 
 	companion object {
 		fun create(parent: ViewGroup): LoadingViewHolder {

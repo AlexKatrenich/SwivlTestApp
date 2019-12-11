@@ -11,6 +11,8 @@ abstract class BasePm : PresentationModel() {
 	val progressState = State(false)
 	val toolbarTitleState = State<String>()
 
+	val throwableState = State<Boolean>()
+
 	/**
 	 * Extension functions to add progress visibility handling.
 	 * */

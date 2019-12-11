@@ -10,7 +10,7 @@ class UserDtoToListItemMapper @Inject constructor() : Mapper<UserDto, UserListIt
 	override fun mapFromObject(source: UserDto): UserListItem =
 		with(source) {
 			UserListItem(
-				id = id.toString(),
+				id = id,
 				login = login,
 				avatarUrl = avatarUrl
 			)

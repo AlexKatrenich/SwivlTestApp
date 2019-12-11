@@ -25,6 +25,7 @@ abstract class BaseFragment<T : BasePm> : PmSupportFragment<T>() {
 
 	private var progressView: View? = null
 	private var toolbarView: Toolbar? = null
+	private var throwableView: View? = null
 
 	override fun onAttach(context: Context) {
 		AndroidSupportInjection.inject(this)
@@ -39,11 +40,13 @@ abstract class BaseFragment<T : BasePm> : PmSupportFragment<T>() {
 		super.onViewCreated(view, savedInstanceState)
 		progressView = view.findViewById(R.id.progressView)
 		toolbarView = view.findViewById(R.id.toolbarView)
+		throwableView = view.findViewById(R.id.throwableView)
 	}
 
 	override fun onBindPresentationModel(pm: T) {
 		progressView?.let { view -> pm.progressState.bindTo(view.visibility()) }
 		toolbarView?.let { view -> pm.toolbarTitleState.bindTo(view::setTitle) }
+		throwableView?.let { view -> pm.throwableState.bindTo(view.visibility()) }
 	}
 
 	override fun providePresentationModel(): T = factory.createPm(classToken)

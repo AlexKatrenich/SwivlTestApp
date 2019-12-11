@@ -20,10 +20,7 @@ class UsersListAdapter(
 	private var loadingState: LoadState = Loading
 
 	private val extraRow: Int
-		get() = if (hasExtraRow())
-			1
-		else
-			0
+		get() = if (hasExtraRow()) 1 else 0
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
 		when(viewType) {
@@ -48,7 +45,6 @@ class UsersListAdapter(
 		val hadExtraRow = hasExtraRow()
 		loadingState = state
 		val hasExtraRow = hasExtraRow()
-
 		if (hadExtraRow != hasExtraRow) {
 			if (hadExtraRow) {
 				notifyItemRemoved(super.getItemCount())

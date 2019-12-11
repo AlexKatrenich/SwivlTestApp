@@ -1,5 +1,6 @@
 package com.katrenich.testapp.data.datasource
 
+import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import com.katrenich.testapp.common.mapper.Mapper
 import com.katrenich.testapp.data.api.GitHubApi
@@ -14,8 +15,8 @@ class UsersDataSourceFactory @Inject constructor (
 	private val usersMapper: Mapper<UserDto, UserListItem>
 ) : DataSource.Factory<Long, UserListItem>() {
 
-	val dataSource: UsersDataSource = UsersDataSource(api, usersMapper)
+	val dataSource = UsersDataSource(api, usersMapper)
 
-	override fun create(): DataSource<Long, UserListItem> = dataSource
-
+	override fun create(): DataSource<Long, UserListItem> =
+		dataSource
 }

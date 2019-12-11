@@ -5,9 +5,11 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.jakewharton.rxbinding2.view.clicks
 import com.katrenich.testapp.R
 import com.katrenich.testapp.data.LoadState
 import com.katrenich.testapp.data.Loading
+import com.katrenich.testapp.data.LoadingException
 import com.katrenich.testapp.data.Success
 import com.katrenich.testapp.presentation.core.ui.BaseFragment
 import com.katrenich.testapp.presentation.features.users_list.pm.UsersListPm
@@ -42,8 +44,13 @@ class UsersListFragment : BaseFragment<UsersListPm>() {
 	override fun onBindPresentationModel(pm: UsersListPm) {
 		super.onBindPresentationModel(pm)
 		pm.usersList.observe(this, Observer { usersListAdapter.submitList(it) })
-		pm.paginatedLoadState().observe(this, Observer { usersListAdapter.setLoadState(it) })
-		pm.initialLoadState().observe(this, Observer { setProgress(it) })
+		pm.paginatedLoadState()?.observe(this, Observer { usersListAdapter.setLoadState(it) })
+		pm.initialLoadState()?.observe(this, Observer { setProgress(it) })
+		retryView.clicks().bindTo(pm.retryAction)
+		refreshView.setOnRefreshListener {
+			pm.refreshAction.consumer.accept(Unit)
+			refreshView.isRefreshing = false
+		}
 	}
 
 	private fun setProgress(state: LoadState) {
