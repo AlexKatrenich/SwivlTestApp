@@ -1,6 +1,7 @@
 package com.katrenich.testapp.core.di
 
 import android.content.Context
+import com.katrenich.testapp.common.rxbus.RxBus
 import com.katrenich.testapp.common.schedulers.IoSchedulersFacade
 import com.katrenich.testapp.common.schedulers.SchedulersFacade
 import com.katrenich.testapp.core.resources.ResourceProvider
@@ -18,4 +19,8 @@ class AppModule {
 	@Singleton
 	@Provides
 	fun provideResourceProvider(context: Context): ResourceProvider = ResourceProvider(context)
+
+	@Singleton
+	@Provides
+	fun provideRxBus(): RxBus = RxBus
 }

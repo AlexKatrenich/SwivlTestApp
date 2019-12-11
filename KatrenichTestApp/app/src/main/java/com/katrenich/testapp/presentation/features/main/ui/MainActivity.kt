@@ -37,6 +37,7 @@ class MainActivity : PmSupportActivity<MainPm>(), HasSupportFragmentInjector {
 
     override fun onBindPresentationModel(pm: MainPm) {
         pm.navigateCommand.bindTo { navigateToFragment(it) }
+        pm.backCommand.bindTo { onBackPressed() }
     }
 
     override fun providePresentationModel(): MainPm =

@@ -10,7 +10,6 @@ abstract class BasePm : PresentationModel() {
 
 	val progressState = State(false)
 	val toolbarTitleState = State<String>()
-
 	val throwableState = State<Boolean>()
 
 	/**

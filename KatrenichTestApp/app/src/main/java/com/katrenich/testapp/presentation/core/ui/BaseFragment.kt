@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.CallSuper
-import androidx.appcompat.widget.Toolbar
 import com.jakewharton.rxbinding2.view.visibility
 import com.katrenich.testapp.R
 import com.katrenich.testapp.presentation.core.factory.PmFactory
@@ -24,7 +23,6 @@ abstract class BaseFragment<T : BasePm> : PmSupportFragment<T>() {
 	protected abstract val classToken: Class<T>
 
 	private var progressView: View? = null
-	private var toolbarView: Toolbar? = null
 	private var throwableView: View? = null
 
 	override fun onAttach(context: Context) {
@@ -39,13 +37,11 @@ abstract class BaseFragment<T : BasePm> : PmSupportFragment<T>() {
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 		progressView = view.findViewById(R.id.progressView)
-		toolbarView = view.findViewById(R.id.toolbarView)
 		throwableView = view.findViewById(R.id.throwableView)
 	}
 
 	override fun onBindPresentationModel(pm: T) {
 		progressView?.let { view -> pm.progressState.bindTo(view.visibility()) }
-		toolbarView?.let { view -> pm.toolbarTitleState.bindTo(view::setTitle) }
 		throwableView?.let { view -> pm.throwableState.bindTo(view.visibility()) }
 	}
 

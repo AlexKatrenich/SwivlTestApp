@@ -43,6 +43,7 @@ class UsersListFragment : BaseFragment<UsersListPm>() {
 
 	override fun onBindPresentationModel(pm: UsersListPm) {
 		super.onBindPresentationModel(pm)
+		pm.toolbarTitleState.bindTo(toolbarView::setTitle)
 		pm.usersList.observe(this, Observer { usersListAdapter.submitList(it) })
 		pm.paginatedLoadState()?.observe(this, Observer { usersListAdapter.setLoadState(it) })
 		pm.initialLoadState()?.observe(this, Observer { setProgress(it) })

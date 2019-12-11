@@ -9,7 +9,6 @@ import com.katrenich.testapp.data.LoadState
 import com.katrenich.testapp.data.datasource.UsersDataSourceFactory
 import com.katrenich.testapp.presentation.core.pm.BasePm
 import com.katrenich.testapp.presentation.features.users_list.ui.adapter.items.UserListItem
-import me.dmdev.rxpm.asObservable
 import javax.inject.Inject
 
 class UsersListPm @Inject constructor(

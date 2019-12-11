@@ -16,8 +16,6 @@ import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Action
 import io.reactivex.schedulers.Schedulers
-import io.reactivex.subjects.BehaviorSubject
-import io.reactivex.subjects.PublishSubject
 
 class UsersDataSource(
 	private val api: GitHubApi,
@@ -64,7 +62,7 @@ class UsersDataSource(
 			api.getUsers(params.key, params.requestedLoadSize)
 			.map(usersMapper::mapFromObjects)
 			.map { it.toList() }
-			.subscribe ( { users ->
+			.subscribe( { users ->
 				paginatedNetworkStateLiveData.postValue(Success)
 				callback.onResult(users)
 			}, {
@@ -72,7 +70,6 @@ class UsersDataSource(
 			})
 		)
 	}
-
 
 	override fun loadBefore(params: LoadParams<Long>, callback: LoadCallback<UserListItem>) {
 		// ignored, since we only ever append to our initial load
