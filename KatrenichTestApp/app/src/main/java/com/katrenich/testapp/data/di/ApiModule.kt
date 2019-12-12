@@ -10,6 +10,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -24,6 +25,11 @@ class ApiModule {
 	fun providesHttpOkClient(): OkHttpClient =
 		OkHttpClient
 			.Builder()
+			.apply {
+				connectTimeout(30, TimeUnit.SECONDS)
+				readTimeout(30, TimeUnit.SECONDS)
+				writeTimeout(30, TimeUnit.SECONDS)
+			}
 			.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
 			.build()
 
