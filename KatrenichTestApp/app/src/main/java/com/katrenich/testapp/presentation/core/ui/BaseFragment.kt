@@ -40,6 +40,7 @@ abstract class BaseFragment<T : BasePm> : PmSupportFragment<T>() {
 		throwableView = view.findViewById(R.id.throwableView)
 	}
 
+	@CallSuper
 	override fun onBindPresentationModel(pm: T) {
 		progressView?.let { view -> pm.progressState.bindTo(view.visibility()) }
 		throwableView?.let { view -> pm.throwableState.bindTo(view.visibility()) }

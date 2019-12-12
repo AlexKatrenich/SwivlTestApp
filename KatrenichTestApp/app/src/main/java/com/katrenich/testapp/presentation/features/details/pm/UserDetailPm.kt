@@ -9,6 +9,7 @@ import com.katrenich.testapp.data.model.UserDto
 import com.katrenich.testapp.presentation.core.pm.BasePm
 import com.katrenich.testapp.presentation.core.rxbus.Clicks
 import com.katrenich.testapp.presentation.features.details.model.User
+import io.reactivex.Single
 import javax.inject.Inject
 
 class UserDetailPm @Inject constructor(
@@ -21,7 +22,7 @@ class UserDetailPm @Inject constructor(
 	val dataState = State<User>()
 	val retryAction = Action<Unit>()
 
-	private var userId = 0L
+	private var userId: Long = 0L
 
 	private val loadUserByIdAction = Action<Unit>()
 
@@ -35,26 +36,33 @@ class UserDetailPm @Inject constructor(
 			.untilDestroy()
 
 		backAction.observable
+			.debounceAction()
 			.doOnNext { RxBus.post(Clicks.BackPressed) }
 			.subscribe()
 			.untilDestroy()
 
 		loadUserByIdAction.observable.mergeWith(retryAction.observable)
-			.map { UserDataSource.Params(userId) }
 			.flatMapSingle {
-				dataSource.loadInitial(it)
-					.bindProgress()
-					.map(mapper::mapFromObject)
+				loadData()
 			}
-			.subscribe( { dataState.consumer.accept(it) }, { handleError(it) })
+			.subscribe( { }, { handleError(it) })
 			.untilDestroy()
 
 		retryAction.observable
-			.map { Unit }
-			.doOnNext(loadUserByIdAction.consumer)
-			.subscribe()
+			.debounceAction()
+			.map { throwableState.consumer.accept(false) }
+			.flatMapSingle {
+				loadData()
+			}
+			.subscribe( { }, { handleError(it) })
 			.untilDestroy()
 	}
+
+	private fun loadData(): Single<User> =
+		dataSource.loadInitial(UserDataSource.Params(userId))
+			.bindProgress()
+			.map(mapper::mapFromObject)
+			.doOnSuccess(dataState.consumer)
 
 	private fun handleError(throwable: Throwable) {
 		throwableState.consumer.accept(true)

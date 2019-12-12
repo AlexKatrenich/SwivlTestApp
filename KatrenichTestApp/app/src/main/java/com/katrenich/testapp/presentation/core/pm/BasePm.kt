@@ -5,6 +5,7 @@ import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.functions.Consumer
 import me.dmdev.rxpm.PresentationModel
+import java.util.concurrent.TimeUnit
 
 abstract class BasePm : PresentationModel() {
 
@@ -40,6 +41,14 @@ abstract class BasePm : PresentationModel() {
 		return this
 			.doOnSubscribe { progressConsumer.accept(true) }
 			.doFinally { progressConsumer.accept(false) }
+	}
+
+	protected inline fun <T> Observable<T>.debounceAction(): Observable<T> =
+		this.throttleFirst(DEBOUNCE_DELAY, TimeUnit.MILLISECONDS)
+
+
+	companion object {
+		const val DEBOUNCE_DELAY = 500L
 	}
 }
 
